@@ -39,14 +39,6 @@ jobs:
         pwd
         ls -la
         echo $SHELL
-        cd ~/CICD-GITHUB_ACTION_dotnet-cd-2/CICD-GITHUB_ACTION_dotnet-cd-2/CICD-GITHUB_ACTION_dotnet-cd-2
-        ls -la
-        # pull git updates
-        git pull origin master
-        # rm local images cache
-        docker rmi --force sbiramwar/dotnet-cd-demo:latest || true
-        docker rmi --force sbiramwar/dotnet-cd-demo-db || true
-        # pull images from remote
-        docker-compose build --pull --no-cache
-        docker-compose up -d --force-recreate
+        echo $PWD
+
 
