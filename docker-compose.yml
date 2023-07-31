@@ -2,7 +2,7 @@ version: '3'
 
 services:
   web:
-    image: elhardoum/dotnet-cd-demo:latest
+    image: sbiramwar/dotnet-cd-demo:latest
     restart: always
     build:
       context: .
@@ -13,10 +13,10 @@ services:
     env_file: .env
   
   mssql:
-    image: elhardoum/dotnet-cd-demo-db:latest
+    image: sbiramwar/dotnet-cd-demo-db:latest
     volumes:
       - ./db:/usr/src/app
-      - ./mssql:/var/opt/mssql/data
+      - ./mssql:/var/opt/mssql/databiram
     working_dir: /usr/src/app
     env_file: .env
     restart: always
