@@ -40,5 +40,6 @@ jobs:
         ls -la
         echo $SHELL
         echo $PWD
+        ls -la
 
 
