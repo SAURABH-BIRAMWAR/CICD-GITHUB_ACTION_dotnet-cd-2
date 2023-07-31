@@ -41,5 +41,8 @@ jobs:
         echo $SHELL
         echo $PWD
         ls -la
+        echo $USER
+
+        
 
 
