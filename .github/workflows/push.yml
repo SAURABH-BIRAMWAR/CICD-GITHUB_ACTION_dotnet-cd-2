@@ -35,7 +35,9 @@ jobs:
     - name: Deploy to Droplet
       run: |
         ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 
+        pwd
         ls -la
+        echo $SHELL
         cd ~/CICD-GITHUB_ACTION_dotnet-cd-2/CICD-GITHUB_ACTION_dotnet-cd-2
         ls -la
         # pull git updates
