@@ -22,27 +22,28 @@ jobs:
     - name: docker push
       run: docker-compose push
       
-  deploy:
+  Deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:
     
-    - name: Setup SSH agent
-      uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        
-    - name: Deploy to Droplet
-      run: |
-        ssh -o StrictHostKeyChecking=no -p 22 new_user_to_deploy@172.31.44.145
-        #ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 
-        ls -la
-        pwd
-        ls -la
-        echo $SHELL
-        echo $PWD
-        ls -la
-        echo $USER
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Deploy in EC2
+        env:
+            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            HOSTNAME : ${{ secrets.HOST }}
+            USER_NAME : ${{ secrets.USER }}
+            
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          
+            #Now we have got the access of EC2 and we will start the deploy .
+            ls -la
+            echo $PWD
+            echo $USER
+            ls -lart 
+	
 
         
 
