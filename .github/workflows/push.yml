@@ -40,7 +40,7 @@ jobs:
               ls -lart
               echo $PWD
               echo $USER
-              ls-lart
+              ls -lart
         
 
 
