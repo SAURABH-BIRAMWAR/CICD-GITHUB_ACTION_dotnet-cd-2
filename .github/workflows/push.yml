@@ -40,6 +40,15 @@ jobs:
               ls -lart
               cd  CICD-GITHUB_ACTION_dotnet-cd-2
               ls -lart
+              # pull git updates
+              git pull origin master
+              # rm local images cache
+              docker rmi --force elhardoum/dotnet-cd-demo:latest || true
+              docker rmi --force elhardoum/dotnet-cd-demo-db:latest || true
+              # pull images from remote
+              docker-compose build --pull --no-cache
+              docker-compose up -d --force-recreate
+              
         
 
 
