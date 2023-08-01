@@ -22,24 +22,21 @@ jobs:
     - name: docker push
       run: docker-compose push
       
-  Deploy:
-    needs: build
+  deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v2 
-      - name: Deploy in EC2
-        env:
-            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            HOSTNAME : ${{ secrets.SSH_HOST }}
-            USER_NAME : ${{ secrets.SSH_USER }}    
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${SSH_USER}@${SSH_HOST} ls -la
-          echo $PWD
-          echo $USER
-          ls -lart
-	
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@master
+	with:
+	   host: ${{ secrets.HOST}}
+	   username: ${{ secrets.USER}}
+	   key: ${{ secrets.KEY }}
+	   port: ${{ secrets.PORT }}
+	   
+	   run: |
+	       echo $USER && ls -lart
 
         
 
