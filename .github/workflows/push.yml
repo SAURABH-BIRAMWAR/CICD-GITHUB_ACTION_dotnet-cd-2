@@ -1,4 +1,4 @@
-name: docker cd
+name: docker cd.
 on:
   push:
     branches:
