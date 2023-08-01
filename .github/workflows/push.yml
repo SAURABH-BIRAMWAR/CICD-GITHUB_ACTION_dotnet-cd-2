@@ -22,21 +22,22 @@ jobs:
     - name: docker push
       run: docker-compose push
       
-  deploy:
+  
+      
+  depoly:
     needs: [build]
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: SSH Deploy
-        uses: appleboy/ssh-action@master
-	with:
-	   host: ${{ secrets.HOST }}
-	   username: ${{ secrets.USER }}
-	   key: ${{ secrets.KEY }}
-	   port: ${{ secrets.PORT }}
-	   
-	   run: |
-	       echo $USER && ls -lart
+     - name: SSH deploy
+       uses: appleboy/ssh-action@master
+       with:
+          host: ${{ secrets.HOST }}
+          username:  ${{ secrets.USER }}
+          key:  ${{ secrets.KEY }}
+          port:  ${{ secrets.PORT }}
+          script: |
+	     ls -lart
 
         
 
