@@ -39,6 +39,8 @@ jobs:
           script: |
               ls -lart
               echo $PWD
+              echo $USER
+              ls-lart
         
 
 
