@@ -41,6 +41,8 @@ jobs:
               echo $PWD
               echo $USER
               ls -lart
+              cd  CICD-GITHUB_ACTION_dotnet-cd-2
+              ls -lart
         
 
 
